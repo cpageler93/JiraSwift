@@ -2,15 +2,18 @@ import XCTest
 @testable import JiraSwift
 
 class JiraSwiftTests: XCTestCase {
+    
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(JiraSwift().text, "Hello, World!")
+        let e = expectation(description: "searchExpecation")
+        let jiraClient = JiraClient(url: URL(string: "https://yourjiraurl")!,
+                                    authorizationHeaderValue: "Basic base64(username:password)")
+        jiraClient.search(jql: "key in (xyz, abc)") { result in
+            print("result: \(result)")
+            
+            e.fulfill()
+        }
+        
+        waitForExpectations(timeout: 15, handler: nil)
     }
 
-
-    static var allTests = [
-        ("testExample", testExample),
-    ]
 }
