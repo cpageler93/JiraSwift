@@ -22,6 +22,31 @@ public class JiraClient: QuackClient {
                        startAt: Int = 0,
                        maxResults: Int = 50,
                        fields: [String] = [],
+                       fieldsByKeys: Bool = false) -> QuackResult<JiraSearchResult> {
+        let headers = [
+            HeaderKey("Authorization"): authorizationHeaderValue,
+            HeaderKey("Content-Type"): "application/json",
+        ] as [HeaderKey: String]
+        
+        let body = [
+            "jql": jql,
+            "startAt": "\(startAt)",
+            "maxResults": "\(maxResults)",
+            "fields": fields,
+            "fieldsByKeys": fieldsByKeys
+        ] as [String : Any]
+        
+        return respond(method: .post,
+                       path: "/rest/api/2/search",
+                       body: body,
+                       headers: headers,
+                       model: JiraSearchResult.self)
+    }
+    
+    public func search(jql: String,
+                       startAt: Int = 0,
+                       maxResults: Int = 50,
+                       fields: [String] = [],
                        fieldsByKeys: Bool = false,
                        completion: @escaping (QuackResult<JiraSearchResult>) -> ()) {
         
