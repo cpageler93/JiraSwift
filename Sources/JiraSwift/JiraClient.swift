@@ -13,7 +13,7 @@ public class JiraClient: QuackClient {
     
     private var authorizationHeaderValue: String
     
-    init(url: URL, authorizationHeaderValue: String) {
+    public init(url: URL, authorizationHeaderValue: String) {
         self.authorizationHeaderValue = authorizationHeaderValue
         super.init(url: url)
     }
