@@ -11,7 +11,7 @@ import SwiftyJSON
 
 public class JiraSearchResult: QuackModel {
     
-    public let expand: String
+    public let expand: String?
     public let startAt: Int
     public let maxResults: Int
     public let total: Int
@@ -19,14 +19,13 @@ public class JiraSearchResult: QuackModel {
     
     public required init?(json: JSON) {
         guard
-            let expand = json["expand"].string,
             let startAt = json["startAt"].int,
             let maxResults = json["maxResults"].int,
             let total = json["total"].int
         else {
             return nil
         }
-        self.expand = expand
+        self.expand = json["expand"].string
         self.startAt = startAt
         self.maxResults = maxResults
         self.total = total
