@@ -98,9 +98,37 @@ internal extension String {
         self = valueFromEnv
     }
     
-    mutating func ensureWithEnv(_ key: String) throws {
+    mutating func ensureWithEnv(_ key: String, allowUserInput: Bool = false, secure: Bool = false) throws {
         if isNoDefaultValue() {
-            try loadFromEnv(key)
+            if allowUserInput {
+                do {
+                    try loadFromEnv(key)
+                } catch {
+                    print("Value for \(key): ")
+                    guard let userInput = JiraSwiftCLI.userInput(secure: secure) else {
+                        throw JiraSwiftCLI.Error.noEnvWith(key: key)
+                    }
+                    self = userInput
+                }
+            } else {
+                try loadFromEnv(key)
+            }
+        }
+    }
+    
+}
+
+internal extension JiraSwiftCLI {
+    
+    func userInput(secure: Bool = false) -> String? {
+        return JiraSwiftCLI.userInput(secure: secure)
+    }
+    
+    static func userInput(secure: Bool = false) -> String? {
+        if secure {
+            return String(validatingUTF8: UnsafePointer<CChar>(getpass("")))
+        } else {
+            return readLine()
         }
     }
     

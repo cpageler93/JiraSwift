@@ -32,7 +32,7 @@ internal extension JiraSwiftCLI {
                 try username.ensureWithEnv(self.usernameEnvKey)
                 
                 var password = password
-                try password.ensureWithEnv(self.passwordEnvKey)
+                try password.ensureWithEnv(self.passwordEnvKey, allowUserInput: true, secure: true)
                 
                 let client = Jira.Client(url: url, username: username, password: password)
                 let result = client.search(jql: jql)
