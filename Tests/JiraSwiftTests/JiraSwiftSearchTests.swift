@@ -1,5 +1,5 @@
 //
-//  JiraSwiftTests.swift
+//  JiraSwiftSearchTests.swift
 //  JiraSwift
 //
 //  Created by Christoph Pageler on 11.04.18.
@@ -10,13 +10,13 @@ import XCTest
 @testable import JiraSwift
 
 
-class JiraSwiftTests: XCTestCase {
+class JiraSwiftSearchTests: XCTestCase {
     
     static var allTests = [
-        ("testExample", testExample),
+        ("testSearchShouldReturnSomeIssues", testSearchShouldReturnSomeIssues),
     ]
     
-    func testExample() {
+    func testSearchShouldReturnSomeIssues() {
         let e = expectation(description: "searchExpecation")
         let jiraClient = Jira.Client(url: URL(string: "your_jira_url")!,
                                      username: "your_username",
