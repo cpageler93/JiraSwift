@@ -7,34 +7,37 @@
 
 import Foundation
 import Quack
-import SwiftyJSON
 
-public class JiraIssue: QuackModel {
+
+public extension Jira {
     
-    public let id: String
-    public let key: String
-    public let fields: Fields
-    
-    public required init?(json: JSON) {
-        guard
-            let idString = json["id"].string,
-            let keyString = json["key"].string,
-            let fields = Fields(json: json["fields"])
-        else {
-            return nil
+    public class Issue: Quack.Model {
+        
+        public let id: String
+        public let key: String
+        public let fields: Fields
+        
+        public required init?(json: JSON) {
+            guard let idString = json["id"].string,
+                let keyString = json["key"].string,
+                let fields = Fields(json: json["fields"])
+            else {
+                return nil
+            }
+            
+            self.id = idString
+            self.key = keyString
+            self.fields = fields
         }
         
-        self.id = idString
-        self.key = keyString
-        self.fields = fields
     }
     
 }
 
 
-extension JiraIssue {
+extension Jira.Issue {
 
-    public class Fields: QuackModel {
+    public class Fields: Quack.Model {
         
         public let summary: String?
         

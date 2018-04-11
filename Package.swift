@@ -7,12 +7,15 @@ let package = Package(
     name: "JiraSwift",
     products: [
         .library(name: "JiraSwift", targets: ["JiraSwift"]),
+        .executable(name: "JiraSwiftCLI", targets: ["JiraSwiftCLI"])
     ],
     dependencies: [
-        .package(url: "https://github.com/cpageler93/Quack", from: "1.0.2"),
+        .package(url: "https://github.com/cpageler93/Quack", from: "1.3.1"),
+        .package(url: "https://github.com/kylef/Commander", from: "0.8.0")
     ],
     targets: [
         .target(name: "JiraSwift", dependencies: ["Quack"]),
-        .testTarget(name: "JiraSwiftTests", dependencies: ["JiraSwift"]),
+        .target(name: "JiraSwiftCLI", dependencies: ["JiraSwift", "Commander"]),
+        .testTarget(name: "JiraSwiftTests", dependencies: ["JiraSwift"])
     ]
 )
