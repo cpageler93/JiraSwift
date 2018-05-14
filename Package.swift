@@ -10,7 +10,7 @@ let package = Package(
         .executable(name: "JiraSwiftCLI", targets: ["JiraSwiftCLI"])
     ],
     dependencies: [
-        .package(url: "https://github.com/cpageler93/Quack", from: "1.5.0"),
+        .package(url: "https://github.com/cpageler93/Quack", from: "1.6.0"),
         .package(url: "https://github.com/kylef/Commander", from: "0.8.0")
     ],
     targets: [
