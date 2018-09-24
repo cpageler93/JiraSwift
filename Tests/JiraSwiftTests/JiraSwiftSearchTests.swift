@@ -14,6 +14,7 @@ class JiraSwiftSearchTests: XCTestCase {
     
     static var allTests = [
         ("testSearchShouldReturnSomeIssues", testSearchShouldReturnSomeIssues),
+        ("testClientSearchWithOAuthTokenShouldReturnSomeIssues", testClientSearchWithOAuthTokenShouldReturnSomeIssues)
     ]
     
     func testSearchShouldReturnSomeIssues() {
