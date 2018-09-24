@@ -30,7 +30,7 @@ public extension Jira {
             self.startAt = startAt
             self.maxResults = maxResults
             self.total = total
-            self.issues = json["issues"].array?.flatMap { Issue(json: $0) } ?? []
+            self.issues = json["issues"].array?.compactMap { Issue(json: $0) } ?? []
         }
         
     }

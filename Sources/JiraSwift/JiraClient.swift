@@ -126,8 +126,22 @@ public extension Jira {
                                 model: RemoteLink.self,
                                 completion: completion)
         }
+
+        public func getServerInfo() -> Quack.Result<ServerInfoResult> {
+            return respond(method: .get,
+                           path: "/rest/api/2/serverInfo",
+                           headers: defaultHeader,
+                           model: ServerInfoResult.self)
+        }
+
+        public func getServerInfo(completion: @escaping (Quack.Result<ServerInfoResult>) -> ()) {
+            return respondAsync(method: .get,
+                                path: "/rest/api/2/serverInfo",
+                                headers: defaultHeader,
+                                model: ServerInfoResult.self,
+                                completion: completion)
+        }
         
     }
-
     
 }

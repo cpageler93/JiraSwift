@@ -5,7 +5,6 @@
 //  Created by Christoph Pageler on 11.04.18.
 //
 
-
 import XCTest
 @testable import JiraSwift
 
@@ -31,6 +30,25 @@ class JiraSwiftSearchTests: XCTestCase {
             e.fulfill()
         }
         
+        waitForExpectations(timeout: 15, handler: nil)
+    }
+
+    func testGetServerInfoShouldReturnServerInfo() {
+        let e = expectation(description: "serverInfoExpectation")
+        let jiraClient = Jira.Client(url: URL(string: "your_jira_url")!,
+                                     username: "your_username",
+                                     password: "your_password")
+        jiraClient.getServerInfo { result in
+            switch result {
+            case .success(let result):
+                XCTAssertNotNil(result)
+            case .failure:
+                XCTFail()
+            }
+            e.fulfill()
+
+        }
+
         waitForExpectations(timeout: 15, handler: nil)
     }
 
