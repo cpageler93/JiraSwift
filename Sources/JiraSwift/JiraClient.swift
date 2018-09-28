@@ -27,6 +27,11 @@ public extension Jira {
             self.authorizationHeaderValue = "Basic \(base64Auth)"
             super.init(url: url)
         }
+
+        public init(url: URL, oAuthAccessToken: String) {
+            self.authorizationHeaderValue = "Bearer \(oAuthAccessToken)"
+            super.init(url: url)
+        }
         
         public func search(jql: String,
                            startAt: Int = 0,
