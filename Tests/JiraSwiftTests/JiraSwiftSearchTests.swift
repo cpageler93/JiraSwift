@@ -72,4 +72,23 @@ class JiraSwiftSearchTests: XCTestCase {
         waitForExpectations(timeout: 15, handler: nil)
     }
 
+    func testMyself() {
+        let e = expectation(description: "myselfExpectation")
+        let jiraClient = Jira.Client(url: URL(string: "your_jira_url")!,
+                                     username: "your_username",
+                                     password: "your_password")
+        jiraClient.getMyself() { result in
+            switch result {
+            case .success(let result):
+                XCTAssertNotNil(result)
+            case .failure:
+                XCTFail()
+            }
+            e.fulfill()
+
+        }
+
+        waitForExpectations(timeout: 15, handler: nil)
+    }
+
 }

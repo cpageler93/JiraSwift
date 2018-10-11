@@ -5,6 +5,7 @@
 //  Created by Christoph Pageler on 17.11.17.
 //
 
+
 import Foundation
 import Quack
 
@@ -144,6 +145,21 @@ public extension Jira {
                                 path: "/rest/api/2/serverInfo",
                                 headers: defaultHeader,
                                 model: ServerInfoResult.self,
+                                completion: completion)
+        }
+
+        public func getMyself() -> Quack.Result<Myself> {
+            return respond(method: .get,
+                           path: "/rest/api/2/myself",
+                           headers: defaultHeader,
+                           model: Myself.self)
+        }
+
+        public func getMyself(completion: @escaping (Quack.Result<Myself>) -> ()) {
+            return respondAsync(method: .get,
+                                path: "/rest/api/2/myself",
+                                headers: defaultHeader,
+                                model: Myself.self,
                                 completion: completion)
         }
         
