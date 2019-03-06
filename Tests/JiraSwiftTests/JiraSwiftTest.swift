@@ -17,7 +17,7 @@ class JiraSwiftTest: XCTestCase  {
             let urlString = ProcessInfo.processInfo.environment["jiraURL"],
             let jiraURL = URL(string: urlString)
         else {
-                fatalError()
+            fatalError()
         }
 
         return (jiraURL, jiraUsername, jiraPassword)
@@ -28,7 +28,7 @@ class JiraSwiftTest: XCTestCase  {
             let jiraURL = URL(string: urlString),
             let oAuthToken = ProcessInfo.processInfo.environment["jiraOAuthToken"]
         else {
-                fatalError()
+            fatalError()
         }
 
         return (jiraURL, oAuthToken)
