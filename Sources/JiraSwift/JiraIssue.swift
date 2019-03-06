@@ -69,7 +69,7 @@ extension Jira.Issue {
                 let nameString = json.dictionary?["name"]?.string,
                 let selfURL = json.dictionary?["self"]?.string
             else {
-                    return nil
+                return nil
             }
 
             self.id = idString
