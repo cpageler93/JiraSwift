@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "Alamofire",
-        "repositoryURL": "https://github.com/Alamofire/Alamofire",
+        "package": "async-http-client",
+        "repositoryURL": "https://github.com/swift-server/async-http-client",
         "state": {
           "branch": null,
-          "revision": "2fb881a1702cb1976c36192aceb54dcedab6fdc2",
-          "version": "4.7.2"
+          "revision": "d84a1da59e0fa879cde27e01cdf9f079208cc0cc",
+          "version": "1.0.0-alpha.4"
         }
       },
       {
@@ -15,26 +15,8 @@
         "repositoryURL": "https://github.com/kylef/Commander",
         "state": {
           "branch": null,
-          "revision": "e5b50ad7b2e91eeb828393e89b03577b16be7db9",
-          "version": "0.8.0"
-        }
-      },
-      {
-        "package": "Quack",
-        "repositoryURL": "https://github.com/cpageler93/Quack",
-        "state": {
-          "branch": null,
-          "revision": "0694f6a3c4f965e4bcc7414f5d168dca5c426e01",
-          "version": "1.6.0"
-        }
-      },
-      {
-        "package": "Result",
-        "repositoryURL": "https://github.com/antitypical/Result.git",
-        "state": {
-          "branch": null,
-          "revision": "7477584259bfce2560a19e06ad9f71db441fff11",
-          "version": "3.2.4"
+          "revision": "4b6133c3071d521489a80c38fb92d7983f19d438",
+          "version": "0.9.1"
         }
       },
       {
@@ -42,17 +24,26 @@
         "repositoryURL": "https://github.com/kylef/Spectre.git",
         "state": {
           "branch": null,
-          "revision": "e34d5687e1e9d865e3527dd58bc2f7464ef6d936",
-          "version": "0.8.0"
+          "revision": "f14ff47f45642aa5703900980b014c2e9394b6e5",
+          "version": "0.9.0"
         }
       },
       {
-        "package": "SwiftyJSON",
-        "repositoryURL": "https://github.com/IBM-Swift/SwiftyJSON.git",
+        "package": "swift-nio",
+        "repositoryURL": "https://github.com/apple/swift-nio.git",
         "state": {
           "branch": null,
-          "revision": "7eb6c83f91c519c19e6a507d604c9176d5ae5b15",
-          "version": "17.0.1"
+          "revision": "9201908b54578aa33f1d1826a5a680aca8991843",
+          "version": "2.8.0"
+        }
+      },
+      {
+        "package": "swift-nio-ssl",
+        "repositoryURL": "https://github.com/apple/swift-nio-ssl.git",
+        "state": {
+          "branch": null,
+          "revision": "f5dd7a60ff56f501ff7bf9be753e4b1875bfaf20",
+          "version": "2.4.0"
         }
       }
     ]

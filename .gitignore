@@ -4,6 +4,7 @@
 
 # ignore xcode project for Swift Package
 *.xcodeproj
+.swiftpm
 
 ## Build generated
 build/
