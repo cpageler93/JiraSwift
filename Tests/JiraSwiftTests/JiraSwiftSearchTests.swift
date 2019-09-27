@@ -20,8 +20,8 @@ class JiraSwiftSearchTests: JiraSwiftTest {
     func testSearchShouldReturnSomeIssues() {
         let e = expectation(description: "searchExpecation")
         let (url, username, password) = jiraCredentialsFromEnvironment()
-        let jiraClient = Jira.Client(url: url, username: username, password: password)
-        jiraClient.search(jql: "key in (EWE27-65, EWE038-3, EWE027-58)") { result in
+        let jiraClient = Jira.Client(baseURL: url.absoluteString, username: username, password: password)
+        jiraClient.search(jql: "key in (EWE27-65, EWE038-3, EWE027-58)").whenComplete { result in
             switch result {
             case .success(let result):
                 XCTAssertEqual(result.issues.count, 3)
@@ -37,8 +37,8 @@ class JiraSwiftSearchTests: JiraSwiftTest {
     func testSearchShouldReturnIssuesWithComponents() {
         let e = expectation(description: "searchWithComponentsExpecation")
         let (url, username, password) = jiraCredentialsFromEnvironment()
-        let jiraClient = Jira.Client(url: url, username: username, password: password)
-        jiraClient.search(jql: "key in (SPEED-28, BA-10)") { result in
+        let jiraClient = Jira.Client(baseURL: url.absoluteString, username: username, password: password)
+        jiraClient.search(jql: "key in (SPEED-28, BA-10)").whenComplete { result in
             switch result {
             case .success(let result):
                 XCTAssertEqual(result.issues.count, 2)
@@ -56,9 +56,9 @@ class JiraSwiftSearchTests: JiraSwiftTest {
     func testClientSearchWithOAuthTokenShouldReturnSomeIssues() {
         let e = expectation(description: "searchExpecationWithOAuth")
         let (url, token) = jiraOAuthTokenFromCredentials()
-        let jiraClient = Jira.Client(url: url, oAuthAccessToken: token)
+        let jiraClient = Jira.Client(baseURL: url.absoluteString, headers: [("Authorization", token)])
 
-        jiraClient.search(jql: "key in (EWE027-65, EWE038-3, EWE027-58)") { result in
+        jiraClient.search(jql: "key in (EWE027-65, EWE038-3, EWE027-58)").whenComplete { result in
             switch result {
             case .success(let result):
                 XCTAssertEqual(result.issues.count, 3)
@@ -74,8 +74,8 @@ class JiraSwiftSearchTests: JiraSwiftTest {
     func testGetServerInfoShouldReturnServerInfo() {
         let e = expectation(description: "serverInfoExpectation")
         let (url, username, password) = jiraCredentialsFromEnvironment()
-        let jiraClient = Jira.Client(url: url, username: username, password: password)
-        jiraClient.getServerInfo { result in
+        let jiraClient = Jira.Client(baseURL: url.absoluteString, username: username, password: password)
+        jiraClient.getServerInfo().whenComplete { result in
             switch result {
             case .success(let result):
                 XCTAssertNotNil(result)
@@ -92,8 +92,8 @@ class JiraSwiftSearchTests: JiraSwiftTest {
     func testMyself() {
         let e = expectation(description: "myselfExpectation")
         let (url, username, password) = jiraCredentialsFromEnvironment()
-        let jiraClient = Jira.Client(url: url, username: username, password: password)
-        jiraClient.getMyself() { result in
+        let jiraClient = Jira.Client(baseURL: url.absoluteString, username: username, password: password)
+        jiraClient.getMyself().whenComplete { result in
             switch result {
             case .success(let result):
                 XCTAssertNotNil(result)

@@ -15,19 +15,21 @@ Jira Client for Swift
 #### JQL Search
 
 ```swift
-let jiraClient = Jira.Client(url: URL(string: "https://your_jira_url")!,
-                             username: "your_username",
-                             password: "your_password")
-jiraClient.search(jql: "key in (XXX027-65, XXX038-3, XXX027-58)") { result in
-    switch result {
-    case .success(let result):
-        for issue in result.issues {
-            print("issue: \(issue.key)")
-        }
-    case .failure:
-    	break
+let client = Jira.Client(baseURL: "https://jira.tinyspeck.com",
+                         username: "your_username",
+                         password: "your_password")
+
+do {
+    let searchResult = try client.search(jql: "key in (XXX027-65, XXX038-3, XXX027-58)").wait()
+    for issue in searchResult.issues {
+        print("\(issue.key): \(issue.fields.assignee?.name ?? "NONE" )")
     }
+} catch Jira.ClientError.jiraError(let error) {
+    print(error.errorMessages)
+} catch {
+    print(error)
 }
+
 ```
 
 ### CLI

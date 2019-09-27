@@ -8,7 +8,6 @@
 
 import Commander
 import Foundation
-import Quack
 
 
 public class JiraSwiftCLI {
@@ -63,11 +62,10 @@ public class JiraSwiftCLI {
 }
 
 internal extension JiraSwiftCLI {
-    
     enum Error: Swift.Error {
         case noEnvWith(key: String)
         case notAValidURL(string: String)
-        case quackError(error: Quack.Error)
+        case networkError(error: Swift.Error)
     }
     
 }
@@ -78,7 +76,7 @@ extension JiraSwiftCLI.Error: LocalizedError {
         switch self {
         case .noEnvWith(let key): return "No Environment Variable with key `\(key)`"
         case .notAValidURL(let string): return "Not a valid url `\(string)`"
-        case .quackError(let error): return "\(error)"
+        case .networkError(let error): return "\(error)"
         default: return "Unknown Error"
         }
     }
