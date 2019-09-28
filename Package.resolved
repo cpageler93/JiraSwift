@@ -11,21 +11,21 @@
         }
       },
       {
-        "package": "Commander",
-        "repositoryURL": "https://github.com/kylef/Commander",
+        "package": "console-kit",
+        "repositoryURL": "https://github.com/vapor/console-kit",
         "state": {
           "branch": null,
-          "revision": "4b6133c3071d521489a80c38fb92d7983f19d438",
-          "version": "0.9.1"
+          "revision": "00ce1abaac919593897b6c60cecdbd4d6290b1f9",
+          "version": "4.0.0-alpha.2.1"
         }
       },
       {
-        "package": "Spectre",
-        "repositoryURL": "https://github.com/kylef/Spectre.git",
+        "package": "swift-log",
+        "repositoryURL": "https://github.com/apple/swift-log.git",
         "state": {
           "branch": null,
-          "revision": "f14ff47f45642aa5703900980b014c2e9394b6e5",
-          "version": "0.9.0"
+          "revision": "e8aabbe95db22e064ad42f1a4a9f8982664c70ed",
+          "version": "1.1.1"
         }
       },
       {
@@ -44,6 +44,15 @@
           "branch": null,
           "revision": "f5dd7a60ff56f501ff7bf9be753e4b1875bfaf20",
           "version": "2.4.0"
+        }
+      },
+      {
+        "package": "SwiftyTextTable",
+        "repositoryURL": "https://github.com/scottrhoyt/SwiftyTextTable.git",
+        "state": {
+          "branch": null,
+          "revision": "c6df6cf533d120716bff38f8ff9885e1ce2a4ac3",
+          "version": "0.9.0"
         }
       }
     ]
