@@ -1,8 +1,8 @@
 //
-//  Search-Command.swift
+//  ProjectTypes-Command.swift
 //  JiraSwiftCLI
 //
-//  Created by Christoph Pageler on 11.04.18.
+//  Created by Christoph Pageler on 30.09.19.
 //
 
 
@@ -12,9 +12,9 @@ import JiraSwift
 import SwiftyTextTable
 
 
-struct SearchCommand: Command {
+struct ProjectTypesCommand: Command {
 
-    public struct SearchCommandSignature: CommandSignature, ClientCreatableCommandSignature {
+    public struct ProjectTypesSignature: CommandSignature, ClientCreatableCommandSignature {
 
         @Option(name: "url", help: "Set the url of your jira instace")
         var url: String
@@ -25,22 +25,17 @@ struct SearchCommand: Command {
         @Option(name: "password", short: "p", help: "Set your jira password")
         var password: String
 
-        @Option(name: "jql", short: "j", help: "Set the JQL Query to execute")
-        var jql: String
-
         public init() { }
     }
 
-    public typealias Signature = SearchCommandSignature
+    public typealias Signature = ProjectTypesSignature
 
     public var help: String {
-        "Search Issues"
+        "Lists all project types"
     }
 
     public func run(using context: CommandContext, signature: Signature) throws {
-        guard let client = signature.client(),
-            let jql = signature.jql
-        else {
+        guard let client = signature.client() else {
             var context = context
             outputHelp(using: &context)
             return
@@ -49,22 +44,19 @@ struct SearchCommand: Command {
         let loading = context.console.loadingBar(title: "Searching")
         loading.start()
 
-        let searchResult = try client.search(jql: jql, fields: [.lastViewed, .created, .updated, .duedate]).wait()
-
+        let projectTypes = try client.projectTypes().wait()
         loading.succeed()
 
         var table = TextTable(columns: [
             TextTableColumn(header: "Key"),
-            TextTableColumn(header: "Creator"),
-            TextTableColumn(header: "Assignee"),
-            TextTableColumn(header: "Summary")
-        ], header: "Search Results")
-        for issue in searchResult.issues {
+            TextTableColumn(header: "Formatted Key"),
+            TextTableColumn(header: "Color")
+        ], header: "Project Types")
+        for projectType in projectTypes {
             table.addRow(values: [
-                issue.key,
-                issue.fields.creator?.name ?? "",
-                issue.fields.assignee?.name ?? "",
-                issue.fields.summary ?? ""
+                projectType.key,
+                projectType.formattedKey,
+                projectType.color
             ])
         }
         context.console.print(table.render())

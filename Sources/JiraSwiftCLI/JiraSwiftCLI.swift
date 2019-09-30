@@ -18,6 +18,8 @@ public class JiraSwiftCLI {
             var config = CommandConfiguration()
 
             config.use(SearchCommand(), as: "search")
+            config.use(ProjectsCommand(), as: "projects")
+            config.use(ProjectTypesCommand(), as: "project-types")
 
             let group = try config.resolve().group()
             let commandInput = CommandInput(arguments: CommandLine.arguments)
@@ -41,4 +43,5 @@ public class JiraSwiftCLI {
             }
         }
     }
+
 }

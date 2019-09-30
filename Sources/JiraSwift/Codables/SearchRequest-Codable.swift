@@ -24,14 +24,40 @@ public extension Jira {
         let maxResults: Int
 
         /// The list of fields to return for each issue.
-        let fields: [String]
+        let fields: [Field]
 
         ///The list of issue parameters to expand on each issue.
         let expand: [String]
 
         /// Whether to validate the JQL query.
         let validateQuery: Bool = true
-        
+
+        public enum Field: String, Codable {
+
+            case summary
+            case project
+            case status
+            case description
+            case issuetype
+            case components
+            case assignee
+            case creator
+            case reporter
+            case lastViewed
+            case created
+            case updated
+            case duedate
+            case resolution
+            case resolutiondate
+            case timespent
+            case timeestimate
+            case watches
+            case versions
+            case fixVersions
+            case priority
+
+        }
+
     }
 
 }

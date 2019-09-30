@@ -29,7 +29,7 @@ public extension Jira.Client {
     func search(jql: String,
                 startAt: Int = 0,
                 maxResults: Int = 50,
-                fields: [String] = [],
+                fields: [Jira.SearchRequest.Field] = [],
                 expand: [String] = []) -> EventLoopFuture<Jira.SearchResult> {
         let searchRequest = Jira.SearchRequest(jql: jql,
                                                startAt: startAt,

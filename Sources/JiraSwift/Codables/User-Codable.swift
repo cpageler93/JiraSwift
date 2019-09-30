@@ -8,7 +8,7 @@
 
 public extension Jira {
 
-    class User: Decodable {
+    class User: Codable {
 
         public let accountId: String?
         public let key: String
@@ -18,22 +18,6 @@ public extension Jira {
         public let active: Bool
         public let timeZone: String
         public let avatarUrls: AvatarURLs
-
-    }
-
-    class AvatarURLs: Decodable {
-
-        public let sixteen: String
-        public let twentyFour: String
-        public let thirtyTwo: String
-        public let fortyEight: String
-
-        enum CodingKeys: String, CodingKey {
-            case sixteen = "16x16"
-            case twentyFour = "24x24"
-            case thirtyTwo = "32x32"
-            case fortyEight = "48x48"
-        }
 
     }
 
