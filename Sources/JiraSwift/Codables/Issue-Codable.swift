@@ -37,8 +37,8 @@ public extension Jira {
         public let duedate: Date?
         public let resolution: Resolution?
         public let resolutiondate: Date?
-        public let timespent: Int
-        public let timeestimate: Int
+        public let timespent: Int?
+        public let timeestimate: Int?
         public let watches: Watches?
         public let versions: [Version]?
         public let fixVersions: [Version]?
