@@ -110,32 +110,6 @@ public extension Jira {
                 }
             }
         }
-        
-        /*public func updateRemoteLinkForIssue(withKey issueKey: String,
-                                             link: String,
-                                             title: String) -> EventLoopFuture<RemoteLink> {
-            HTTPClient.Body.data(<#T##data: Data##Data#>)
-            let body: [String : Any] = [
-                "application": [
-                    "type": "com.thepeaklab.jiraSwift",
-                    "name": "Jira Swift Client"
-                ],
-                "relationship": "mentioned in",
-                "object": [
-                    "url": link,
-                    "title": title
-                ]
-            ]
-
-            let request: HTTPClient.Request
-            do {
-                request = try HTTPClient.Request(url: "\(self.baseURL)/rest/api/2/issue/\(issueKey)/remotelink", method: .POST, headers: defaultHeader, body: nil)
-            } catch {
-                return self.httpClient.eventLoopGroup.next().makeFailedFuture(error)
-            }
-            let remoteLink: EventLoopFuture<Jira.RemoteLink> = self.submit(request: request)
-            return remoteLink
-        }*/
 
     }
 }
