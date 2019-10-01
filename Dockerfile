@@ -1,4 +1,4 @@
-FROM swift:4.1
+FROM swift:5.1
 
 MAINTAINER Christoph Pageler
 
