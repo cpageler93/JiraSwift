@@ -90,11 +90,6 @@ public extension Jira {
                     throw ClientError.couldNotReadBody
                 }
 
-                //print(String(data: Data(response), encoding: .utf8)!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)) // Debugging
-
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .formatted(Jira.Client.dateFormatter)
-
                 // We try to convert to the right response type, if this doesn't work, we look if we
                 // got an error message back from JIRA. If that doesn't appear to be the case, this
                 // was likely a parsing error, so we should surface the original issue.
