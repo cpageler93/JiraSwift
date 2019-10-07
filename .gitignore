@@ -4,6 +4,7 @@
 
 # ignore xcode project for Swift Package
 *.xcodeproj
+.swiftpm
 
 ## Build generated
 build/
@@ -68,3 +69,6 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+
+
+.DS_Store
