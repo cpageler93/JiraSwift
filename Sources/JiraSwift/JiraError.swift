@@ -6,12 +6,8 @@
 //
 
 
-public extension Jira {
+public struct JiraResponseError: Codable {
 
-    class JiraResponseError: Decodable {
-
-        public let errorMessages: [String]
-
-    }
+    public var errorMessages: [String]
 
 }

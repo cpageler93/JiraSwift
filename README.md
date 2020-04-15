@@ -1,6 +1,10 @@
+## WIP
+
+**master** branch is in progress (upgrading to Swift 5.2 and [cpageler93/api-client](https://github.com/cpageler93/api-client))
+
 # JiraSwift
 
-![Swift](https://img.shields.io/badge/Swift-5.1-orange.svg?style=flat)
+![Swift](https://img.shields.io/badge/Swift-5.2-orange.svg?style=flat)
 ![Platforms](https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS%20%7C%20Linux-lightgrey.svg?style=flat)
 ![Xcode](https://img.shields.io/badge/Xcode-11-blue.svg?style=flat)
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/cpageler93/JiraSwift/blob/master/LICENSE)
@@ -8,41 +12,34 @@
 
 `JiraSwift` is a HTTP client for Jira implemented in swift based on [swift-server/async-http-client](https://github.com/swift-server/async-http-client).
 
-# Framework Usage
+## Framework Usage
 
-## JQL Search
+### JQL Search
 
 ```swift
-let client = Jira.Client(baseURL: "https://jira.tinyspeck.com",
-                         username: "your_username",
-                         password: "your_password")
+let jira = JiraClient(baseURL: "https://jira.tinyspeck.com", 
+                      username: "your_username", 
+                      password: "your_password")
 
-do {
-    let searchResult = try client.search(jql: "key in (XXX027-65, XXX038-3, XXX027-58)").wait()
-    for issue in searchResult.issues {
-        print("\(issue.key): \(issue.fields.assignee?.name ?? "NONE" )")
-    }
-} catch Jira.ClientError.jiraError(let error) {
-    print(error.errorMessages)
-} catch {
-    print(error)
-}
+// jira.search.post(jql: String) returns EventLoopFuture<SearchResult>
+// you can work with .wait() or .whenComplete { result }
+let result = try jira.search.post(jql: "key in (XXX027-65, XXX038-3, XXX027-58)").wait()
 
 ```
 
-## Implemented Methods
+### Implemented Methods
 
-| Implemented | Method           | Route                      |
+| Implemented | Route / Method   | Route                      |
 |:----------- |:---------------- |:-------------------------- |
-|     ✅      | getMyself()      | [`/rest/api/2/myself`](https://docs.atlassian.com/software/jira/docs/api/REST/8.4.1/#api/2/myself) |
-|     ✅      | search()         | [`/rest/api/2/search`](https://docs.atlassian.com/software/jira/docs/api/REST/8.4.1/#api/2/search) |
-|     ✅      | getServerInfo()  | [`/rest/api/2/serverInfo`](https://docs.atlassian.com/software/jira/docs/api/REST/8.4.1/#api/2/serverInfo)     |
-|     ✅      | projects()         | [`/rest/api/2/project`](https://docs.atlassian.com/software/jira/docs/api/REST/8.4.1/#api/2/project) |
-|     ✅      | projectTypes()         | [`/rest/api/2/project/type`](https://docs.atlassian.com/software/jira/docs/api/REST/8.4.1/#api/2/project/type) |
+|     ✅      | myself.get()     | [`/rest/api/2/myself`](https://docs.atlassian.com/software/jira/docs/api/REST/8.4.1/#api/2/myself) |
+|     ✅      | search.post()    | [`/rest/api/2/search`](https://docs.atlassian.com/software/jira/docs/api/REST/8.4.1/#api/2/search) |
+|     ✅      | serverInfo.get() | [`/rest/api/2/serverInfo`](https://docs.atlassian.com/software/jira/docs/api/REST/8.4.1/#api/2/serverInfo)     |
+|     ✅      | project.list()   | [`/rest/api/2/project`](https://docs.atlassian.com/software/jira/docs/api/REST/8.4.1/#api/2/project) |
+|     ✅      | project.types()  | [`/rest/api/2/project/type`](https://docs.atlassian.com/software/jira/docs/api/REST/8.4.1/#api/2/project/type) |
 
-# Command Line Interface
+## Command Line Interface
 
-## Environment
+### Environment
 
 You can either setup your environment
 
@@ -64,7 +61,7 @@ jira search --url "https://your_jira_url" \
             --jql "key in (XYZ027-65, XYZ038-3, XYZ027-58)"
 ```
 
-## Commands
+### Commands
 
 | Command         | Description                |
 | --------------- | -------------------------- |
@@ -73,7 +70,7 @@ jira search --url "https://your_jira_url" \
 | `project-types` | List all project types     |
 
 
-# Contribute
+## Contribute
 
 Feel free to add a missing REST API method or create an issue if you want me to implement it!
 

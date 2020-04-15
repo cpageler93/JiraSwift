@@ -7,6 +7,7 @@
 
 
 import XCTest
+import JiraSwift
 
 
 class JiraSwiftTest: XCTestCase  {
@@ -23,7 +24,7 @@ class JiraSwiftTest: XCTestCase  {
         return (jiraURL, jiraUsername, jiraPassword)
     }
 
-    func jiraOAuthTokenFromCredentials() -> (URL, String) {
+    func jiraOAuthTokenFromEnvironment() -> (URL, String) {
         guard let urlString = ProcessInfo.processInfo.environment["JIRA_URL"],
             let jiraURL = URL(string: urlString),
             let oAuthToken = ProcessInfo.processInfo.environment["JIRA_OAUTH_TOKEN"]
@@ -32,6 +33,13 @@ class JiraSwiftTest: XCTestCase  {
         }
 
         return (jiraURL, oAuthToken)
+    }
+
+    func jiraFromEnvironment() -> JiraClient {
+        let credentials = jiraCredentialsFromEnvironment()
+        return JiraClient(baseURL: credentials.0, username: credentials.1, password: credentials.2)
+//        let credentials = jiraOAuthTokenFromEnvironment()
+//        return JiraClient(baseURL: credentials.0, token: credentials.1)
     }
 
 }

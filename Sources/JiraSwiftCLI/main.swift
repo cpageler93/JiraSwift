@@ -6,5 +6,4 @@
 //
 
 
-let app = JiraSwiftCLI()
-app.run()
+JiraCLI.main()

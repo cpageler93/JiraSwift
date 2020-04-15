@@ -6,22 +6,18 @@
 //
 
 
-public extension Jira {
+public struct AvatarURLs: Codable {
 
-    class AvatarURLs: Codable {
-
-        public let sixteen: String
-        public let twentyFour: String
-        public let thirtyTwo: String
-        public let fortyEight: String
-
-        enum CodingKeys: String, CodingKey {
-            case sixteen = "16x16"
-            case twentyFour = "24x24"
-            case thirtyTwo = "32x32"
-            case fortyEight = "48x48"
-        }
-
+    enum CodingKeys: String, CodingKey {
+        case sixteen = "16x16"
+        case twentyFour = "24x24"
+        case thirtyTwo = "32x32"
+        case fortyEight = "48x48"
     }
+
+    public var sixteen: String
+    public var twentyFour: String
+    public var thirtyTwo: String
+    public var fortyEight: String
 
 }

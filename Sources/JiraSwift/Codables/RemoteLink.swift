@@ -6,13 +6,9 @@
 //
 
 
-public extension Jira {
+public struct RemoteLink: Codable {
 
-    class RemoteLink: Decodable {
-
-        let id: Int
-        let selfUrl: String
-
-    }
+    public var id: Int
+    public var selfUrl: String
 
 }
