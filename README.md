@@ -63,11 +63,11 @@ jira search --url "https://your_jira_url" \
 
 ### Commands
 
-| Command         | Description                |
-| --------------- | -------------------------- |
-| `search`        | Search for Issues with JQL |
-| `projects`      | List all projects          |
-| `project-types` | List all project types     |
+| Command          | Description                |
+| ---------------- | -------------------------- |
+| `search`         | Search for Issues with JQL |
+| `project list`   | List all projects          |
+| `project types`  | List all project types     |
 
 
 ## Contribute
