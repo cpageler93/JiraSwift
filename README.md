@@ -1,7 +1,3 @@
-## WIP
-
-**master** branch is in progress (upgrading to Swift 5.2 and [cpageler93/api-client](https://github.com/cpageler93/api-client))
-
 # JiraSwift
 
 ![Swift](https://img.shields.io/badge/Swift-5.2-orange.svg?style=flat)
